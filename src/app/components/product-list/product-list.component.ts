@@ -1,12 +1,11 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule],
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css'
+  styleUrl: './product-list.component.css',
 })
-export class ProductListComponent {
-
-}
+export class ProductListComponent {}
