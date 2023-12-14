@@ -1,11 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ProductCategory } from '../../model/product-category';
 import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-category',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, CommonModule],
+  providers: [ProductService],
   templateUrl: './product-category.component.html',
   styleUrl: './product-category.component.css',
 })

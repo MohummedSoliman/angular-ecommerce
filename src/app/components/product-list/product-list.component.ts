@@ -31,7 +31,6 @@ export class ProductListComponent {
   }
 
   listProducts() {
-    console.log(this.route.snapshot);
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 
     if (hasCategoryId) {

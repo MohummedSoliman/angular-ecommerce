@@ -22,9 +22,7 @@ export class ProductService {
 
   getProductCategories(): Observable<ProductCategory[]> {
     return this.httpClient
-      .get<GetProductCategoriesResponse>(
-        `${this.baseUrl}/api/productCategories`
-      )
+      .get<GetProductCategoriesResponse>(`${this.baseUrl}/productCategories`)
       .pipe(map((response) => response._embedded.productCategories));
   }
 }
