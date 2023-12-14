@@ -9,7 +9,7 @@ import { ProductService } from '../../services/product.service';
   standalone: true,
   imports: [CommonModule, HttpClientModule],
   providers: [ProductService],
-  templateUrl: './product-list.component.html',
+  templateUrl: './product-list-grid.component.html',
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
