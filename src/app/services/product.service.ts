@@ -14,11 +14,11 @@ export class ProductService {
   getProductList(): Observable<Product[]> {
     return this.httpClient
       .get<GetResponse>(this.baseUrl)
-      .pipe(map((response) => response._embeded.products));
+      .pipe(map((response) => response._embedded.products));
   }
 }
 interface GetResponse {
-  _embeded: {
+  _embedded: {
     products: Product[];
   };
 }
