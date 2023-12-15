@@ -1,1 +1,12 @@
-<p>search-component works!</p>
+<div class="form-header">
+  <input
+    #searchInput
+    type="text"
+    placeholder="Search for products ..."
+    class="au-input au-input-xl"
+    (keyup.enter)="search(searchInput.value)"
+  />
+  <button class="au-btn-submit" (click)="search(searchInput.value)">
+    Search
+  </button>
+</div>
