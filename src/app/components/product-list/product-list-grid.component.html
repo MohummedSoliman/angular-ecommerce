@@ -1,9 +1,18 @@
 <div class="main-content">
   <div class="section-content section-content-p30">
-    <h2>Category {{ categoryName }}</h2>
-    <hr />
+    <div *ngIf="categoryName != ''">
+      <h2>Category {{ categoryName }}</h2>
+      <hr />
+    </div>
     <div class="container-fluid">
       <div class="row">
+        <div
+          *ngIf="products?.length == 0"
+          class="alert alert-warning col-md-12"
+          role="alert"
+        >
+          There is no product like this search keyword!!!
+        </div>
         <div class="col-md-3" *ngFor="let tempProduct of products">
           <div class="product-box">
             <a href="product-detail.html">
