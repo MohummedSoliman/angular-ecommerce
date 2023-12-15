@@ -15,14 +15,13 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductListComponent {
   products: Product[] = [];
-  currentCategoryId: number;
+  currentCategoryId: number = 1;
+  categoryName: string = '';
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute
-  ) {
-    this.currentCategoryId = 1;
-  }
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
@@ -35,6 +34,10 @@ export class ProductListComponent {
 
     if (hasCategoryId) {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+      this.categoryName = this.route.snapshot.paramMap.get('name')!;
+    } else {
+      this.currentCategoryId = 1;
+      this.categoryName = 'Books';
     }
 
     this.productService
