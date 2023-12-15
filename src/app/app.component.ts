@@ -4,6 +4,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchComponentComponent } from './components/search-component/search-component.component';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterOutlet,
-    ProductListComponent,
-    ProductCategoryComponent,
     RouterModule,
     HttpClientModule,
+    ProductListComponent,
+    ProductCategoryComponent,
+    SearchComponentComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
