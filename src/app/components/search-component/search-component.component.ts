@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-component',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './search-component.component.css',
 })
 export class SearchComponentComponent {
-  search(keyword: string) {}
+  constructor(public router: Router) {}
+
+  ngOnInit() {}
+
+  search(keyword: string) {
+    this.router.navigateByUrl(`search/${keyword}`);
+  }
 }
