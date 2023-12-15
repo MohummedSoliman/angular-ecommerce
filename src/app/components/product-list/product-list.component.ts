@@ -30,6 +30,24 @@ export class ProductListComponent {
   }
 
   listProducts() {
+    const hasSearchMode: boolean = this.route.snapshot.paramMap.has('keyword');
+
+    if (hasSearchMode) {
+      this.handleSearchProduct();
+    } else {
+      this.handleListProduct();
+    }
+  }
+
+  handleSearchProduct() {
+    const searchValue: string = this.route.snapshot.paramMap.get('keyword')!;
+
+    this.productService
+      .getProductByKeyword(searchValue)
+      .subscribe((data) => (this.products = data));
+  }
+
+  handleListProduct() {
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 
     if (hasCategoryId) {
