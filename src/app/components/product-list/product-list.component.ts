@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs';
 import { Product } from '../../model/product';
 import { ProductService } from '../../services/product.service';
@@ -9,7 +10,13 @@ import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterModule, RouterLink],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
+    NgbModule,
+    RouterLink,
+  ],
   providers: [ProductService],
   templateUrl: './product-list-grid.component.html',
   styleUrl: './product-list.component.css',
@@ -23,7 +30,7 @@ export class ProductListComponent {
   // New Properties for Pagination
 
   thePageNumber: number = 1;
-  thePageSize: number = 10;
+  thePageSize: number = 5;
   theTotalElements: number = 0;
 
   constructor(
@@ -84,5 +91,11 @@ export class ProductListComponent {
         this.thePageSize = data.page.size;
         this.theTotalElements = data.page.totalElements;
       });
+  }
+
+  updatePageSize(pageSize: string) {
+    this.thePageSize = +pageSize;
+    this.thePageNumber = 1;
+    this.listProducts();
   }
 }
