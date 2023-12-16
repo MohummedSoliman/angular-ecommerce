@@ -5,6 +5,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponentComponent } from './components/search-component/search-component.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { SearchComponentComponent } from './components/search-component/search-c
     RouterOutlet,
     RouterModule,
     HttpClientModule,
+    NgbModule,
     ProductListComponent,
     ProductCategoryComponent,
     SearchComponentComponent,
