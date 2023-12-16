@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { Product } from '../../model/product';
 import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, RouterModule, RouterLink],
   providers: [ProductService],
   templateUrl: './product-list-grid.component.html',
   styleUrl: './product-list.component.css',

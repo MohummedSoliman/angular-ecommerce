@@ -15,10 +15,10 @@
         </div>
         <div class="col-md-3" *ngFor="let tempProduct of products">
           <div class="product-box">
-            <a href="product-detail.html">
+            <a routerLink="/products/{{ tempProduct.id }}">
               <img src="{{ tempProduct.imageUrl }}" class="img-responsive" />
             </a>
-            <a href="product-detail.html">
+            <a routerLink="/products/{{ tempProduct.id }}">
               <h1>{{ tempProduct.name }}</h1>
             </a>
             <h2>{{ tempProduct.description }}</h2>

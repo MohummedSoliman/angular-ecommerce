@@ -32,6 +32,12 @@ export class ProductService {
     return this.getProduct(searchUrl);
   }
 
+  getProductDetails(productId: number): Observable<Product> {
+    const searchUrl = `${this.baseUrl}/products/${productId}`;
+
+    return this.httpClient.get<Product>(searchUrl);
+  }
+
   private getProduct(url: string): Observable<Product[]> {
     return this.httpClient
       .get<GetProductsResponse>(url)
