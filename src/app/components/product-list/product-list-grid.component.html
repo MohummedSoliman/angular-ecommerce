@@ -42,7 +42,9 @@
                   [(page)]="thePageNumber"
                   [pageSize]="thePageSize"
                   [collectionSize]="theTotalElements"
+                  [maxSize]="5"
                   (pageChange)="listProducts()"
+                  [boundaryLinks]="true"
                 ></ngb-pagination>
               </div>
 
