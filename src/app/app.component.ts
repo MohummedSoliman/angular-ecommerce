@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchComponentComponent } from './components/search-component/search-component.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
     ProductCategoryComponent,
     SearchComponentComponent,
     CartStatusComponent,
+    CartDetailsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
