@@ -11,6 +11,7 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     RouterModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule,
     ProductListComponent,
     ProductCategoryComponent,
     SearchComponentComponent,
