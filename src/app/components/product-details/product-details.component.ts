@@ -11,7 +11,7 @@ import { ProductService } from '../../services/product.service';
   selector: 'app-product-details',
   standalone: true,
   imports: [HttpClientModule, CommonModule, RouterModule],
-  providers: [ProductService, CartService],
+  providers: [],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })

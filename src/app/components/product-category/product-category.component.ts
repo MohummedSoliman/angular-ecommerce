@@ -8,7 +8,7 @@ import { ProductService } from '../../services/product.service';
   selector: 'app-product-category',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  providers: [ProductService],
+  providers: [],
   templateUrl: './product-category.component.html',
   styleUrl: './product-category.component.css',
 })
