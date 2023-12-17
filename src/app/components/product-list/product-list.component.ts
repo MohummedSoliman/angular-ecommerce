@@ -104,6 +104,7 @@ export class ProductListComponent {
   }
 
   addToCart(product: Product) {
+    console.log(product);
     let cartItem = new CartItem(product);
     this.cartService.addToCart(cartItem);
   }

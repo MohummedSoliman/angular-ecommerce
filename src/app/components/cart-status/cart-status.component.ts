@@ -1,28 +1,33 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-status',
   standalone: true,
-  imports: [CartService],
+  imports: [CommonModule],
+  providers: [CartService],
   templateUrl: './cart-status.component.html',
   styleUrl: './cart-status.component.css',
 })
-export class CartStatusComponent {
-  totalPrice: number = 0;
-  totalQuantity: number = 0;
+export class CartStatusComponent implements OnInit {
+  totalPriceValue: number = 0;
+  totalQuantityValue: number = 0;
 
-  constructor(public cartServcie: CartService) {}
+  constructor(public cartService: CartService) {}
 
   ngOnInit() {
     this.updateCartStatus();
   }
 
   updateCartStatus() {
-    this.cartServcie.totalPrice.subscribe((data) => (this.totalPrice = data));
+    this.cartService.totalPrice.subscribe(
+      (data) => (this.totalPriceValue = data)
+    );
 
-    this.cartServcie.totalQuantity.subscribe(
-      (data) => (this.totalQuantity = data)
+    // subscribe to the cart totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      (data) => (this.totalQuantityValue = data)
     );
   }
 }

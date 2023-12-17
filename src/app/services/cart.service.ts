@@ -15,37 +15,47 @@ export class CartService {
 
   ngOnInit() {}
 
-  addToCart(cartItem: CartItem) {
+  addToCart(theCartItem: CartItem) {
+    // check if we already have the item in our cart
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem | undefined = undefined;
 
     if (this.cartItems.length > 0) {
+      // find the item in the cart based on item id
+
       for (let tempCartItem of this.cartItems) {
-        if (tempCartItem.id === cartItem.id) {
+        if (tempCartItem.id === theCartItem.id) {
           existingCartItem = tempCartItem;
           break;
         }
       }
+
+      // check if we found it
       alreadyExistsInCart = existingCartItem != undefined;
     }
 
     if (alreadyExistsInCart) {
-      existingCartItem!.quantitiy!++;
+      // increment the quantity
+      existingCartItem!.quantity!++;
     } else {
-      this.cartItems.push(cartItem);
+      // just add the item to the array
+      this.cartItems.push(theCartItem);
     }
 
-    this.computeCartTotal();
+    // compute cart total price and total quantity
+    this.computeCartTotals();
   }
 
-  computeCartTotal() {
+  computeCartTotals() {
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
 
     for (let currentCartItem of this.cartItems) {
-      totalPriceValue += currentCartItem.unitPrice * currentCartItem.quantitiy;
-      totalQuantityValue += currentCartItem.quantitiy;
+      totalPriceValue += currentCartItem.quantity * currentCartItem.unitPrice;
+      totalQuantityValue += currentCartItem.quantity;
     }
+
+    // publish the new values ... all subscribers will receive the new data
 
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
