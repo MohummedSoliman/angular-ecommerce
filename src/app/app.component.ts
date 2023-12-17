@@ -10,6 +10,7 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ import { CartService } from './services/cart.service';
     SearchComponentComponent,
     CartStatusComponent,
     CartDetailsComponent,
+    CheckoutComponent,
   ],
   providers: [ProductService, CartService],
   templateUrl: './app.component.html',
