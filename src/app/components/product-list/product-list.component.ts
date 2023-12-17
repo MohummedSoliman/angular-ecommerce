@@ -19,7 +19,7 @@ import { ProductService } from '../../services/product.service';
     NgbModule,
     RouterLink,
   ],
-  providers: [ProductService, CartService],
+  providers: [],
   templateUrl: './product-list-grid.component.html',
   styleUrl: './product-list.component.css',
 })
@@ -104,7 +104,6 @@ export class ProductListComponent {
   }
 
   addToCart(product: Product) {
-    console.log(product);
     let cartItem = new CartItem(product);
     this.cartService.addToCart(cartItem);
   }

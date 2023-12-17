@@ -8,6 +8,8 @@ import { SearchComponentComponent } from './components/search-component/search-c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { ProductService } from './services/product.service';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +26,7 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
     CartStatusComponent,
     CartDetailsComponent,
   ],
+  providers: [ProductService, CartService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

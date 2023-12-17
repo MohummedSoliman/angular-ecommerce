@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { take } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-status',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  providers: [CartService],
+  providers: [],
   templateUrl: './cart-status.component.html',
   styleUrl: './cart-status.component.css',
 })
