@@ -20,6 +20,17 @@ export class CheckoutComponent {
         lastName: [''],
         email: [''],
       }),
+      shippingAddress: this.formBuilder.group({
+        street: [''],
+        city: [''],
+        state: [''],
+        country: [''],
+        zipCode: [''],
+      }),
     });
+  }
+
+  onSubmit() {
+    console.log(this.checkoutFormGroup.get('customer')!.value);
   }
 }
