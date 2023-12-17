@@ -100,6 +100,10 @@ export class ProductListComponent {
       .subscribe(this.processResult());
   }
 
+  addToCart(product: Product) {
+    console.log(product);
+  }
+
   updatePageSize(pageSize: string) {
     this.thePageSize = +pageSize;
     this.thePageNumber = 1;
