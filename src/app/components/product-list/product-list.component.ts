@@ -10,7 +10,7 @@ import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-product-list-grid',
   standalone: true,
   imports: [
     CommonModule,

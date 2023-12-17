@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 
 @Component({
