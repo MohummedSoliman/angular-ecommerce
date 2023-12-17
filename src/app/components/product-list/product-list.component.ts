@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs';
+import { CartItem } from '../../model/cart-item';
 import { Product } from '../../model/product';
+import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -17,7 +19,7 @@ import { ProductService } from '../../services/product.service';
     NgbModule,
     RouterLink,
   ],
-  providers: [ProductService],
+  providers: [ProductService, CartService],
   templateUrl: './product-list-grid.component.html',
   styleUrl: './product-list.component.css',
 })
@@ -37,6 +39,7 @@ export class ProductListComponent {
 
   constructor(
     private productService: ProductService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {}
 
@@ -101,7 +104,8 @@ export class ProductListComponent {
   }
 
   addToCart(product: Product) {
-    console.log(product);
+    let cartItem = new CartItem(product);
+    this.cartService.addToCart(cartItem);
   }
 
   updatePageSize(pageSize: string) {
