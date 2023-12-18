@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Country } from '../../model/country';
+import { State } from '../../model/state';
 import { ShopFromService } from '../../services/shop-from.service';
 
 @Component({
@@ -19,6 +20,8 @@ export class CheckoutComponent {
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
   countries: Country[] = [];
+  shippingAddressStates: State[] = [];
+  billingAddressStates: State[] = [];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -100,6 +103,23 @@ export class CheckoutComponent {
     } else {
       this.checkoutFormGroup.controls['billingAddress'].reset();
     }
+  }
+
+  getRelatedState(formGroupName: string) {
+    const formGroup = this.checkoutFormGroup.get(formGroupName);
+
+    const countryCode = formGroup?.value['country'].code;
+
+    this.formService.getStates(countryCode).subscribe((data) => {
+      if (formGroupName === 'shippingAddress') {
+        this.shippingAddressStates = data;
+      } else {
+        this.billingAddressStates = data;
+      }
+
+      // Set The First Value Selected
+      formGroup?.get('state')?.setValue(data[0]);
+    });
   }
 
   onSubmit() {
