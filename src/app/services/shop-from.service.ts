@@ -1,11 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { Country } from '../model/country';
+import { State } from '../model/state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopFromService {
-  constructor() {}
+  private basrUrl: string = 'http://localhost:8080/api';
+
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {}
 
@@ -28,4 +33,32 @@ export class ShopFromService {
     }
     return of(data);
   }
+
+  getCountries(): Observable<Country[]> {
+    const searchUrl: string = `${this.basrUrl}/countries`;
+
+    return this.httpClient
+      .get<GetResponseCountries>(searchUrl)
+      .pipe(map((response) => response._embedded.countries));
+  }
+
+  getStates(countryCode: string): Observable<State[]> {
+    const searchUrl: string = `${this.basrUrl}/states/search/findByCountryCode?code=${countryCode}`;
+
+    return this.httpClient
+      .get<GetResponseStates>(searchUrl)
+      .pipe(map((response) => response._embedded.states));
+  }
+}
+
+interface GetResponseCountries {
+  _embedded: {
+    countries: Country[];
+  };
+}
+
+interface GetResponseStates {
+  _embedded: {
+    states: State[];
+  };
 }
