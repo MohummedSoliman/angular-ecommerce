@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Country } from '../../model/country';
 import { State } from '../../model/state';
 import { ShopFromService } from '../../services/shop-from.service';
@@ -31,9 +37,18 @@ export class CheckoutComponent {
   ngOnInit() {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        email: [''],
+        firstName: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
+        lastName: new FormControl('', [
+          Validators.required,
+          Validators.maxLength(2),
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9._]+\\.[a-z]{2,4}$'),
+        ]),
       }),
       shippingAddress: this.formBuilder.group({
         street: [''],
@@ -91,6 +106,18 @@ export class CheckoutComponent {
     this.formService
       .getCreditCardMonth(startMonth)
       .subscribe((data) => (this.creditCardMonths = data));
+  }
+
+  get firstName() {
+    return this.checkoutFormGroup.get('customer.firstName');
+  }
+
+  get lastName() {
+    return this.checkoutFormGroup.get('customer.lastName');
+  }
+
+  get email() {
+    return this.checkoutFormGroup.get('customer.email');
   }
 
   copyShippingAddressToBillingAddres(event: Event) {
