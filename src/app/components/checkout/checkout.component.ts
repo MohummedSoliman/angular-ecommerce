@@ -64,6 +64,26 @@ export class CheckoutComponent {
       .subscribe((data) => (this.creditCardYears = data));
   }
 
+  handleMonthAndYear() {
+    let startMonth: number;
+
+    const currentYear: number = new Date().getFullYear();
+
+    let selectedYear: number = Number(
+      this.checkoutFormGroup.get('creditCard')!.value['expirationYear']
+    );
+
+    if (currentYear === selectedYear) {
+      startMonth = new Date().getMonth() + 1;
+    } else {
+      startMonth = 1;
+    }
+
+    this.formService
+      .getCreditCardMonth(startMonth)
+      .subscribe((data) => (this.creditCardMonths = data));
+  }
+
   copyShippingAddressToBillingAddres(event: Event) {
     const target = event.target as HTMLInputElement;
 
