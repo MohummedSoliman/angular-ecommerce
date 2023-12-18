@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Country } from '../../model/country';
 import { ShopFromService } from '../../services/shop-from.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class CheckoutComponent {
   totalQuantity: number = 0;
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
+  countries: Country[] = [];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -62,6 +64,10 @@ export class CheckoutComponent {
     this.formService
       .getCreditCardYear()
       .subscribe((data) => (this.creditCardYears = data));
+
+    this.formService
+      .getCountries()
+      .subscribe((data) => (this.countries = data));
   }
 
   handleMonthAndYear() {
