@@ -45,6 +45,18 @@ export class CheckoutComponent {
     });
   }
 
+  copyShippingAddressToBillingAddres(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    if (target.checked) {
+      this.checkoutFormGroup.controls['billingAddress'].setValue(
+        this.checkoutFormGroup.controls['shippingAddress'].value
+      );
+    } else {
+      this.checkoutFormGroup.controls['billingAddress'].reset();
+    }
+  }
+
   onSubmit() {
     console.log(this.checkoutFormGroup.get('shippingAddress')!.value);
   }
