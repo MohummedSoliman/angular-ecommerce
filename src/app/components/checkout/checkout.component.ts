@@ -1,10 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ShopFromService } from '../../services/shop-from.service';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
 })
@@ -13,8 +15,13 @@ export class CheckoutComponent {
 
   totalPrice: number = 0;
   totalQuantity: number = 0;
+  creditCardYears: number[] = [];
+  creditCardMonths: number[] = [];
 
-  constructor(public formBuilder: FormBuilder) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    public formService: ShopFromService
+  ) {}
 
   ngOnInit() {
     this.checkoutFormGroup = this.formBuilder.group({
@@ -46,6 +53,15 @@ export class CheckoutComponent {
         expirationYear: [''],
       }),
     });
+
+    let startMonth: number = new Date().getMonth() + 1;
+    this.formService
+      .getCreditCardMonth(startMonth)
+      .subscribe((data) => (this.creditCardMonths = data));
+
+    this.formService
+      .getCreditCardYear()
+      .subscribe((data) => (this.creditCardYears = data));
   }
 
   copyShippingAddressToBillingAddres(event: Event) {
