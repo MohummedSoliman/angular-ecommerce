@@ -11,6 +11,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class CheckoutComponent {
   checkoutFormGroup!: FormGroup;
 
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
+
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {
