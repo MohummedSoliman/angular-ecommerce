@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Country } from '../../model/country';
 import { State } from '../../model/state';
+import { CartService } from '../../services/cart.service';
 import { ShopFromService } from '../../services/shop-from.service';
 import { ShopValidators } from '../../validators/shop-validators';
 
@@ -32,7 +33,8 @@ export class CheckoutComponent {
 
   constructor(
     public formBuilder: FormBuilder,
-    public formService: ShopFromService
+    public formService: ShopFromService,
+    public cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -123,6 +125,8 @@ export class CheckoutComponent {
     this.formService
       .getCountries()
       .subscribe((data) => (this.countries = data));
+
+    this.reviewCartDetails();
   }
 
   handleMonthAndYear() {
@@ -242,6 +246,14 @@ export class CheckoutComponent {
       // Set The First Value Selected
       formGroup?.get('state')?.setValue(data[0]);
     });
+  }
+
+  reviewCartDetails() {
+    this.cartService.totalPrice.subscribe((data) => (this.totalPrice = data));
+
+    this.cartService.totalQuantity.subscribe(
+      (data) => (this.totalQuantity = data)
+    );
   }
 
   onSubmit() {
