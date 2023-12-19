@@ -10,6 +10,7 @@ import {
 import { Country } from '../../model/country';
 import { State } from '../../model/state';
 import { ShopFromService } from '../../services/shop-from.service';
+import { ShopValidators } from '../../validators/shop-validators';
 
 @Component({
   selector: 'app-checkout',
@@ -40,10 +41,12 @@ export class CheckoutComponent {
         firstName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
+          ShopValidators.notOnlyWhiteSpace,
         ]),
         lastName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
+          ShopValidators.notOnlyWhiteSpace,
         ]),
         email: new FormControl('', [
           Validators.required,
