@@ -43,7 +43,7 @@ export class CheckoutComponent {
         ]),
         lastName: new FormControl('', [
           Validators.required,
-          Validators.maxLength(2),
+          Validators.minLength(2),
         ]),
         email: new FormControl('', [
           Validators.required,
@@ -152,6 +152,8 @@ export class CheckoutComponent {
   }
 
   onSubmit() {
-    console.log(this.checkoutFormGroup.get('shippingAddress')!.value);
+    if (this.checkoutFormGroup.invalid) {
+      this.checkoutFormGroup.markAllAsTouched();
+    }
   }
 }
