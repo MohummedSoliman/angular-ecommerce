@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
 import OktaSignIn from '@okta/okta-signin-widget';
+import { response } from 'express';
+import { error } from 'jquery';
 import myAppConfig from '../../config/my-app-config';
 
 @Component({
@@ -26,5 +28,23 @@ export class LoginComponent {
         scopes: myAppConfig.oidc.scopes,
       },
     });
+  }
+
+  ngOnInit() {
+    this.oktaSignin.remove();
+
+    this.oktaSignin.renderEL(
+      {
+        el: '#okta-sign-in-widget',
+      },
+      (response: any) => {
+        if (response.status === 'SUCCESS') {
+          this.oktaAuth.signInWithRedirect();
+        }
+      },
+      (error: any) => {
+        throw error;
+      }
+    );
   }
 }
