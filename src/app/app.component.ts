@@ -13,6 +13,7 @@ import { CartService } from './services/cart.service';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShopFromService } from './services/shop-from.service';
+import { CheckoutService } from './services/checkout.service';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ import { ShopFromService } from './services/shop-from.service';
     CartDetailsComponent,
     CheckoutComponent,
   ],
-  providers: [ProductService, CartService, ShopFromService],
+  providers: [ProductService, CartService, ShopFromService, CheckoutService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
