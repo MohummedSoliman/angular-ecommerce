@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { OktaAuthStateService, OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
@@ -5,7 +6,7 @@ import OktaAuth from '@okta/okta-auth-js';
 @Component({
   selector: 'app-login-status',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './login-status.component.html',
   styleUrl: './login-status.component.css',
 })
