@@ -4,11 +4,10 @@ import { Order } from './order';
 import { OrderItem } from './order-item';
 
 export class Purchase {
-  constructor(
-    public customer: Customer,
-    public shippingAddress: Address,
-    public billingAddress: Address,
-    public order: Order,
-    public orderItems: OrderItem[]
-  ) {}
+  // constructor(
+  customer: Customer | null = null;
+  shippingAddress: Address | null = null;
+  billingAddress: Address | null = null;
+  order: Order | null = null;
+  orderItems: OrderItem[] = [];
 }
