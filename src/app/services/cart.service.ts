@@ -10,7 +10,19 @@ export class CartService {
   totalPrice: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   totalQuantity: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-  constructor() {}
+  storage: Storage = sessionStorage;
+
+  constructor() {
+    let data = JSON.parse(this.storage.getItem('cartItems')!);
+
+    console.log(data);
+
+    if (data != null) {
+      this.cartItems = Array.from(data);
+
+      this.computeCartTotals();
+    }
+  }
 
   ngOnInit() {}
 
@@ -55,6 +67,15 @@ export class CartService {
 
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
+
+    // persist cart data
+    this.persistCartItems();
+  }
+
+  persistCartItems() {
+    console.log('reach this method');
+    this.storage.setItem('cartItems', JSON.stringify(this.cartItems));
+    this.storage.getItem('cartItems');
   }
 
   decrementItemQuantity(cartItem: CartItem) {
